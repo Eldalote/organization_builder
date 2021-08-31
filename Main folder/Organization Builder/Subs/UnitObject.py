@@ -1,11 +1,14 @@
+from tkinter import *
+from icecream import ic
 class UnitObject(object):
     """description of class"""
-    def __init__(self, name, unittype):
-        self.UnitType = unittype
-        self.Name = name
+    def __init__(self, master):
+        self.UnitType = None
+        self.Name = None
         self.SubUnits = []
         self.Tags = []
         self.Rank = None
+        self.Master = master
         
     
     def Add_SubUnit(self, subunit):
@@ -38,4 +41,37 @@ class UnitObject(object):
         self.UnitType = unittype
     def Save(self):
         pass
+    def define(self, name, subunits, tags, rank):
+        self.Name = name
+        self.SubUnits = subunits
+        self.Tags = tags
+        self.Rank = rank
 
+    def display(self):
+        """Displays the window. Unhides it if it already exits, creates it if not."""
+        try:
+            self.window.deiconify()
+        except:
+            self._create_window()
+        self.window.focus_set()
+
+    def _hide(self):
+        """Hides the window"""
+        try: 
+            self.window.withdraw()
+        except:
+            pass
+
+    def _close(self):
+        """Closes the window (destroy Toplevel object)"""
+        try:
+            self.window.close()
+        except:
+            pass
+
+    def _create_window(self):
+        """Creates the window"""        
+        #create the window
+        self.window = Toplevel()
+        geometry = "300x300+100+100"
+        self.window.geometry(geometry)

@@ -1,5 +1,7 @@
 from tkinter import *
 from icecream import ic
+from Subs.MasterList import MasterList
+from Subs.UnitObject import UnitObject
 
 
 def get_screen_size():
@@ -23,6 +25,12 @@ def main():
     #build the main window
     mainWindow = Tk()
     mainWindow.geometry(f'{300}x{300}+{int(screensize[0]*0.4)}+{int(screensize[1]*0.4)}')
+    mainWindow.title("Main Window")
+
+    ML = MasterList("todo")
+    ML.display()
+
+
        
     #main windown main loop
     mainWindow.mainloop()
